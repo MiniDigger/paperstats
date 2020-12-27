@@ -90,11 +90,12 @@ export default {
           for (const key in data) {
             if (Object.prototype.hasOwnProperty.call(data, key)) {
               const foundVersion = data[key].name;
-              this.selectedVersions.forEach(v => {
+              for (const v of this.selectedVersions) {
                 if (foundVersion.startsWith(v)) {
                   y = y + data[key].y;
+                  break;
                 }
-              });
+              }
             }
           }
           if (y === 0) {
