@@ -21,4 +21,4 @@ jobs:
       - name: Run deploy script
         run: |
           git config user.name "MiniDigger" && git config user.email "admin@minidigger.me"
-          yarn run gh-pages-deploy
+          node scripts/gh-pages-deploy.js
