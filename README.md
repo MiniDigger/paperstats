@@ -1,24 +1,9 @@
 # paperstats
 
-## Project setup
-```
-yarn install
-```
+Small website to calculate the marketshare of paper for different mc versions, based on data from [bStats](https://bstats.org).
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+You can view it here: https://minidigger.github.io/paperstats/
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## Tech
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+its a dum vue site, `yarn && yarn serve` to run it locally.
