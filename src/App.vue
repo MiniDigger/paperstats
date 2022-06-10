@@ -25,6 +25,7 @@ export default {
       bukkit: -1,
       selectedVersions: ["1.18", "1.18.1", "1.18.2"],
       allowedVersions: [
+        "1.19",
         "1.18",
         "1.17",
         "1.16",
