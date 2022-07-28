@@ -23,7 +23,7 @@ export default {
     return {
       paper: -1,
       bukkit: -1,
-      selectedVersions: ["1.18", "1.18.1", "1.18.2"],
+      selectedVersions: ["1.19", "1.19.1"],
       allowedVersions: [
         "1.19",
         "1.18",
@@ -33,6 +33,7 @@ export default {
         "1.14",
         "1.13",
         "1.12",
+        "1.19.1",
         "1.18.2",
         "1.18.1",
         "1.17.1",
