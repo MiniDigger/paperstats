@@ -14,7 +14,7 @@
       Additionally, {{ forks }} servers run forks of Paper, making up an addittional {{ forkPercent }} percent!
     </h2>
     <h3>
-      This leaves Spigot with less than {{ bukkit - paper - forks }} servers and {{ 100 - percent - forkPercent }}
+      This leaves Spigot with less than {{ bukkit - paper - forks }} servers and {{ 100 - percent - forkPercent }} percent!
     </h3>
   </div>
 </template>
@@ -74,10 +74,10 @@ export default {
       }
     },
     forkPercent() {
-      if (this.fork === -1 || this.bukkit === -1) {
+      if (this.forks === -1 || this.bukkit === -1) {
         return -1;
       } else {
-        return ((this.fork / this.bukkit) * 100).toFixed(2);
+        return ((this.forks / this.bukkit) * 100).toFixed(2);
       }
     }
   },
