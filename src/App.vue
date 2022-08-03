@@ -1,14 +1,22 @@
 <template>
-  <h1>
-    {{ paper }} out of {{ bukkit }} servers on
-    <select name="version" v-model="selectedVersions" multiple>
-      <option v-for="ver in allowedVersions" :value="ver" :key="ver">{{
-        ver
-      }}</option>
-    </select>
-    run Paper!<br />
-    That's {{ percent }} percent!
-  </h1>
+  <div class="wrapper">
+    <h1>
+      {{ paper }} out of {{ bukkit }} servers on
+      <select name="version" v-model="selectedVersions" multiple>
+        <option v-for="ver in allowedVersions" :value="ver" :key="ver">{{
+          ver
+        }}</option>
+      </select>
+      run Paper!<br />
+      That's {{ percent }} percent!
+    </h1>
+    <h2>
+      Additionally, {{ forks }} servers run forks of Paper, making up an addittional {{ forkPercent }} percent!
+    </h2>
+    <h3>
+      This leaves Spigot with less than {{ bukkit - paper - forks }} servers and {{ 100 - percent - forkPercent }}
+    </h3>
+  </div>
 </template>
 
 <script>
@@ -16,6 +24,7 @@ const paperUrl =
   "https://bstats.org/api/v1/plugins/580/charts/minecraft_version/data";
 const bukkitUrl =
   "https://bstats.org/api/v1/plugins/1/charts/minecraftVersion/data";
+const forkUrls = ["https://bstats.org/api/v1/plugins/5103/charts/minecraft_version/data"];  
 
 export default {
   name: "App",
@@ -23,6 +32,7 @@ export default {
     return {
       paper: -1,
       bukkit: -1,
+      forks: -1,
       selectedVersions: ["1.19", "1.19.1"],
       allowedVersions: [
         "1.19",
@@ -62,6 +72,13 @@ export default {
       } else {
         return ((this.paper / this.bukkit) * 100).toFixed(2);
       }
+    },
+    forkPercent() {
+      if (this.fork === -1 || this.bukkit === -1) {
+        return -1;
+      } else {
+        return ((this.fork / this.bukkit) * 100).toFixed(2);
+      }
     }
   },
   watch: {
@@ -84,6 +101,10 @@ export default {
     update() {
       this.getJSON(paperUrl, data => (this.paper = data));
       this.getJSON(bukkitUrl, data => (this.bukkit = data));
+      this.forks = 0;
+      forkUrls.forEach(url => {
+        this.getJSON(url, data => (this.forks += data));
+      });
     },
     getJSON(url, callback) {
       const xhr = new XMLHttpRequest();
@@ -124,11 +145,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  font-size: 3.5vw;
+.wrapper {
   position: fixed;
   top: 50%;
   transform: translate(5%, -70%);
+}
+h1 {
+  font-size: 3.5vw;
+}
+h2 {
+  margin-top: 2em;
+  font-size: 2vw;
+}
+h3 {
+  font-size: 2vw;
 }
 select {
   font-size: 3.5vw;
