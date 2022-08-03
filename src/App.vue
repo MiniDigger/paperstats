@@ -109,7 +109,6 @@ export default {
     update() {
       this.getJSON(paperUrl, data => (this.paper = data));
       this.getJSON(bukkitUrl, data => (this.bukkit = data));
-      this.forks = 0;
       for (let idx = 0; idx < forkUrls.length; idx++) {
         this.getJSON(forkUrls[idx], data => (this.forks[idx] = data));
       }
