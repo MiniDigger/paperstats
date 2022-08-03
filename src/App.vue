@@ -11,10 +11,10 @@
       That's {{ percent }} percent!
     </h1>
     <h2>
-      Additionally, {{ forks }} servers run forks of Paper, making up an addittional {{ forkPercent }} percent!
+      Additionally, {{ combinedForks }} servers run forks of Paper, making up an addittional {{ forkPercent }} percent!
     </h2>
     <h3>
-      This leaves Spigot with less than {{ bukkit - paper - forks }} servers and {{ 100 - percent - forkPercent }} percent!
+      This leaves Spigot with less than {{ bukkit - paper - combinedForks }} servers and {{ 100 - percent - forkPercent }} percent!
     </h3>
   </div>
 </template>
@@ -32,7 +32,7 @@ export default {
     return {
       paper: -1,
       bukkit: -1,
-      forks: -1,
+      forks: [],
       selectedVersions: ["1.19", "1.19.1"],
       allowedVersions: [
         "1.19",
@@ -73,11 +73,19 @@ export default {
         return ((this.paper / this.bukkit) * 100).toFixed(2);
       }
     },
+    combinedForks() {
+        if (this.forks.length === 0) {
+          return -1;
+        }
+        let result = 0;
+        this.forks.forEach(f => result += f);
+        return result;
+    },
     forkPercent() {
-      if (this.forks === -1 || this.bukkit === -1) {
+      if (this.forks.length === 0 || this.bukkit === -1) {
         return -1;
       } else {
-        return ((this.forks / this.bukkit) * 100).toFixed(2);
+        return ((this.combinedForks / this.bukkit) * 100).toFixed(2);
       }
     }
   },
@@ -102,9 +110,9 @@ export default {
       this.getJSON(paperUrl, data => (this.paper = data));
       this.getJSON(bukkitUrl, data => (this.bukkit = data));
       this.forks = 0;
-      forkUrls.forEach(url => {
-        this.getJSON(url, data => (this.forks += data));
-      });
+      for (let idx = 0; idx < forkUrls.length; idx++) {
+        this.getJSON(forkUrls[idx], data => (this.forks[idx] = data));
+      }
     },
     getJSON(url, callback) {
       const xhr = new XMLHttpRequest();
