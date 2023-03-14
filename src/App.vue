@@ -33,7 +33,7 @@ export default {
       paper: -1,
       bukkit: -1,
       forks: [],
-      selectedVersions: ["1.19", "1.19.1"],
+      selectedVersions: ["1.19", "1.19.1", "1.19.2", "1.19.3", "1.19.4"],
       allowedVersions: [
         "1.19",
         "1.18",
@@ -43,6 +43,8 @@ export default {
         "1.14",
         "1.13",
         "1.12",
+        "1.19.4",
+        "1.19.3",
         "1.19.2",
         "1.19.1",
         "1.18.2",
