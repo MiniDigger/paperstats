@@ -156,7 +156,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.html {
+  color-scheme: dark light;
+}
+
 .wrapper {
   position: fixed;
   top: 50%;
