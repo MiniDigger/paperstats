@@ -11,7 +11,7 @@
       That's {{ percent }} percent!
     </h1>
     <h2>
-      Additionally, {{ combinedForks }} servers run forks of Paper, making up an addittional {{ forkPercent }} percent!
+      Additionally, {{ combinedForks }} servers run forks of Paper, making up an additional {{ forkPercent }} percent!
     </h2>
     <h3>
       This leaves Spigot with less than {{ bukkit - paper - combinedForks }} servers and {{ 100 - percent - forkPercent }} percent!
