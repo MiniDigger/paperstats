@@ -9,6 +9,9 @@ jobs:
     name: Deploying to gh-pages
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -19,9 +22,6 @@ jobs:
         with:
           node-version: 20.x
           cache: 'pnpm'
-
-      - name: Checkout branch
-        uses: actions/checkout@v4
 
       - name: Install dependencies
         run: pnpm install
