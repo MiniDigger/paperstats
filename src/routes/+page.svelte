@@ -118,7 +118,7 @@
 <main class="wrapper">
   <h1>
     {paper} out of {bukkit} servers on
-    <select name="version" bind:value={selectedVersions} multiple>
+    <select name="version" bind:value={selectedVersions} multiple title="Version Selection">
       {#each allowedVersions as ver (ver)}
         <option value={ver}>{ver}</option>
       {/each}
@@ -137,7 +137,7 @@
 </main>
 
 <style>
-  html {
+  :global(html) {
     color-scheme: dark light;
   }
 
