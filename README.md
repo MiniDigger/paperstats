@@ -6,4 +6,4 @@ You can view it here: https://minidigger.github.io/paperstats/
 
 ## Tech
 
-its a dum vue site, `yarn && yarn serve` to run it locally.
+its a dum svelte site, `pnpm i && pnpm dev` to run it locally.

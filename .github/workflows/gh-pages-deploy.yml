@@ -3,22 +3,46 @@ on:
   push:
     branches:
       - master
+
 jobs:
-  gh-pages-deploy:
+  build:
     name: Deploying to gh-pages
     runs-on: ubuntu-latest
     steps:
       - name: Setup Node.js for use with actions
-        uses: actions/setup-node@v2.1.4
+        uses: actions/setup-node@v4
         with:
-          version:  12.x
+          node-version: 20.x
+
       - name: Checkout branch
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v4
 
       - name: Clean install dependencies
-        run: yarn install
+        run: pnpm install
 
-      - name: Run deploy script
-        run: |
-          git config user.name "MiniDigger" && git config user.email "admin@minidigger.me"
-          yarn run gh-pages-deploy
+      - name: Build
+        env:
+          BASE_PATH: "/${{ github.event.repository.name }}"
+        run: pnpm run build
+
+      - name: Upload Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "build/"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
