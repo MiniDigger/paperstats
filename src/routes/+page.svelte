@@ -126,10 +126,16 @@
     run Paper!<br />
     That's {percent.toFixed(2)} percent!
   </h1>
-  <h2>
-    Additionally, {combinedForks} servers run forks of Paper, making up an additional {forkPercent.toFixed(2)}
-    percent!
-  </h2>
+  {#if combinedForks === -1 && forkPercent === -1}
+    <h2>
+      There are no servers running forks of Paper on this version.
+    </h2>
+  {:else}
+    <h2>
+      Additionally, {combinedForks} servers run forks of Paper, making up an additional {forkPercent.toFixed(2)}
+      percent!
+    </h2>
+  {/if}
   <h3>
     This leaves Spigot with less than {legacyCount} servers and {legacyPercent.toFixed(2)}
     percent!
