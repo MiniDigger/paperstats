@@ -1,7 +1,10 @@
 <script lang="ts">
   const paperUrl = "https://bstats.org/api/v1/plugins/580/charts/minecraft_version/data";
   const bukkitUrl = "https://bstats.org/api/v1/plugins/1/charts/minecraftVersion/data";
-  const forkUrls = ["https://bstats.org/api/v1/plugins/5103/charts/minecraft_version/data"];
+  const forkUrls = [
+    "https://bstats.org/api/v1/plugins/5103/charts/minecraft_version/data",
+    "https://bstats.org/api/v1/plugins/18084/charts/minecraft_version/data",
+  ];
 
   const defaultVersion = "1.20.4";
 
