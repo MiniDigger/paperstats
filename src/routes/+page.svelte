@@ -128,11 +128,11 @@
   </h1>
   {#if combinedForks === -1 && forkPercent === -1}
     <h2>
-      There are no servers running forks of Paper on this version.
+      There are no servers running popular forks of Paper on this version.
     </h2>
   {:else}
     <h2>
-      Additionally, {combinedForks} servers run forks of Paper, making up an additional {forkPercent.toFixed(2)}
+      Additionally, {combinedForks} servers run popular forks of Paper, making up an additional {forkPercent.toFixed(2)}
       percent!
     </h2>
   {/if}
