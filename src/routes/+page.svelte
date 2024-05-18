@@ -6,7 +6,7 @@
     "https://bstats.org/api/v1/plugins/18084/charts/minecraft_version/data",
   ];
 
-  const defaultVersion = "1.20.4";
+  const defaultVersion = "1.20.6";
 
   let paper = -1;
   let bukkit = -1;
@@ -131,9 +131,7 @@
     That's {percent.toFixed(2)} percent!
   </h1>
   {#if combinedForks === -1 && forkPercent === -1}
-    <h2>
-      There are no servers running popular forks of Paper on this version.
-    </h2>
+    <h2>There are no servers running popular forks of Paper on this version.</h2>
   {:else}
     <h2>
       Additionally, {combinedForks} servers run popular forks of Paper, making up an additional {forkPercent.toFixed(2)}
