@@ -13,6 +13,7 @@
   let forks = [] as number[];
   let selectedVersions = [typeof window !== "undefined" && window.location.hash ? window.location.hash.replace("#", "") : defaultVersion];
   let allowedVersions = [
+    "1.21",
     "1.20",
     "1.19",
     "1.18",
