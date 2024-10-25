@@ -6,7 +6,7 @@
     "https://bstats.org/api/v1/plugins/18084/charts/minecraft_version/data",
   ];
 
-  const defaultVersion = "1.20.6";
+  const defaultVersion = "1.21.3";
 
   let paper = -1;
   let bukkit = -1;
@@ -23,6 +23,9 @@
     "1.14",
     "1.13",
     "1.12",
+    "1.21.3",
+    "1.21.2",
+    "1.21.1",
     "1.20.6",
     "1.20.5",
     "1.20.4",
