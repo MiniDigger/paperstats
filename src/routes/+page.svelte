@@ -7,12 +7,7 @@
   ];
 
   const defaultVersion = "1.21.3";
-
-  let paper = -1;
-  let bukkit = -1;
-  let forks = [] as number[];
-  let selectedVersions = [typeof window !== "undefined" && window.location.hash ? window.location.hash.replace("#", "") : defaultVersion];
-  let allowedVersions = [
+  const allowedVersions = [
     "1.21",
     "1.20",
     "1.19",
@@ -56,34 +51,41 @@
     "1.12.1",
   ];
 
-  let percent = -1;
-  $: if (paper === -1 || bukkit === -1) {
-    percent = -1;
-  } else {
-    percent = (paper / bukkit) * 100;
-  }
+  let paper = $state(-1);
+  let bukkit = $state(-1);
+  let forks = $state([] as number[]);
+  let selectedVersions = $state([typeof window !== "undefined" && window.location.hash ? window.location.hash.replace("#", "") : defaultVersion]);
 
-  let combinedForks = -1;
-  $: if (forks.length === 0) {
-    combinedForks = -1;
-  } else {
-    combinedForks = forks.reduce((a, b) => a + b, 0);
-  }
+  let percent = $derived.by(() => {
+    if (paper === -1 || bukkit === -1) {
+      return -1;
+    } else {
+      return (paper / bukkit) * 100;
+    }
+  });
 
-  let forkPercent = -1;
-  $: if (combinedForks === -1 || bukkit === -1) {
-    forkPercent = -1;
-  } else {
-    forkPercent = (combinedForks / bukkit) * 100;
-  }
+  let combinedForks = $derived.by(() => {
+    if (forks.length === 0) {
+      return -1;
+    } else {
+      return forks.reduce((a, b) => a + b, 0);
+    }
+  });
 
-  $: legacyCount = bukkit - paper - combinedForks;
-  $: legacyPercent = 100 - percent - forkPercent;
+  let forkPercent = $derived.by(() => {
+    if (combinedForks === -1 || bukkit === -1) {
+      return -1;
+    } else {
+      return (combinedForks / bukkit) * 100;
+    }
+  });
 
-  $: {
+  let legacyCount = $derived(bukkit - paper - combinedForks);
+  let legacyPercent = $derived(100 - percent - forkPercent);
+  $effect(() => {
     if (typeof window !== "undefined") window.history.replaceState(null, "PaperStats", "#" + selectedVersions.join(","));
     update();
-  }
+  });
 
   async function update() {
     await load(paperUrl, (data) => (paper = data));
