@@ -58,7 +58,7 @@
 
   let percent = -1;
   $: if (paper === -1 || bukkit === -1) {
-    percent - 1;
+    percent = -1;
   } else {
     percent = (paper / bukkit) * 100;
   }
@@ -81,7 +81,7 @@
   $: legacyPercent = 100 - percent - forkPercent;
 
   $: {
-    typeof window !== "undefined" && window.history.replaceState(null, "PaperStats", "#" + selectedVersions.join(","));
+    if (typeof window !== "undefined") window.history.replaceState(null, "PaperStats", "#" + selectedVersions.join(","));
     update();
   }
 
