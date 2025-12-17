@@ -6,8 +6,9 @@
     "https://bstats.org/api/v1/plugins/18084/charts/minecraft_version/data",
   ];
 
-  const defaultVersion = "1.21.9";
+  const defaultVersion = "1.21.11";
   const allowedVersions = [
+    "26.1",
     "1.21",
     "1.20",
     "1.19",
@@ -18,6 +19,8 @@
     "1.14",
     "1.13",
     "1.12",
+    "1.21.11",
+    "1.21.10",
     "1.21.9",
     "1.21.8",
     "1.21.7",
